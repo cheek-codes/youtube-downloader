@@ -1,13 +1,21 @@
 from pytube import YouTube
-from sys import argv
 
-link = argv[1]
-yt = YouTube(link)
+while True:
 
-print("Title: ", yt.title)
+    def download():
+        link = input("What are you trying to download? URL: ")
+        yt = YouTube(link)
 
-print("Views: ", yt.views)
+        yd = yt.streams.get_highest_resolution()
+        yd.download("/Users/sandy/Downloads")
 
-yd = yt.streams.get_highest_resolution()
+        print("Downloading:", yt.title, "... Wait for it ...")
+        print("Done\n")
 
-yd.download("/Users/sandy/Downloads")
+        i_finished = input("If you're done, just type \"done\". If not done, press any key and then ENTER ").lower()
+        if i_finished == "done":
+            quit()
+        else:
+            download()
+
+    download()
