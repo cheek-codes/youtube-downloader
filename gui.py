@@ -1,12 +1,26 @@
+from os import path
 from tkinter import *
 from tkinter import filedialog
 from moviepy import *
+from moviepy.editor import VideoFileClip
+from pytube import YouTube
+
 
 # functions
 def select_path():
     # allows user to select path
     path = filedialog.askdirectory()
     path_label.config(text=path)
+
+def download_file():
+    #get user path
+    get_link = link_field.get()
+    #get selected path
+    user_path = path_label.cget("text")
+    #download video
+    mp4_video = Youtube(get_link).streams.get_highest_resolution().download()
+    vid_clip = VideoFileClip(mp4_video)
+    vid_clip.close()
 
 screen = Tk()
 title = screen.title('Youtube Download')
