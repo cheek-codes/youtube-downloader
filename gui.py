@@ -17,14 +17,14 @@ def download_file():
     #get user path
     get_link = link_field.get()
     #get selected path
-    user_path = path_field.get()
-    user_path - path_label.cget("text")
+    user_path = path_label.cget("text")
     screen.title("Downloading..")
     #download video
     mp4_video = YouTube(get_link).streams.get_highest_resolution().download()
+    vid_clip = VideoFileClip(mp4_video)
     vid_clip.close()
     shutil.move(mp4_video, user_path)
-    screen.title("Download Complet!")
+    screen.title("Download Complete!")
 
 screen = Tk()
 title = screen.title("Youtube Downloader")
@@ -32,13 +32,13 @@ canvas = Canvas(screen, width=500, height=500)
 canvas.pack()
 
 #image logo
-logo_img = PhotoImage(file="yt.png")
+logo_img = PhotoImage(file="youtube_downloader\yt.png")
 #resize
 logo_img = logo_img.subsample(2, 2)
 canvas.create_image(250, 80, image=logo_img)
 
 #link field
-link_field - Entry(screen, width=40, font=("Arial", 15))
+link_field = Entry(screen, width=40, font=("Arial", 15))
 link_label = Label(screen, text="Enter Download link:", font=("Arial", 15))
 
 #select path for saving the file
@@ -46,7 +46,7 @@ path_label = Label(screen, text="select path for download", font=("Arial", 15))
 select_btn = Button(screen, text="Select Path", bg="red", padx="22", pady="5", font=("Arial", 15), fg="#fff", command=select_path)
 
 #Add to window
-canvas.creat_window(250, 280, window=path_label)
+canvas.create_window(250, 280, window=path_label)
 canvas.create_window(250, 330, window=select_btn)
 
 #add widgets to window
