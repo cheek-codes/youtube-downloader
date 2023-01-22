@@ -1,21 +1,20 @@
 from pytube import YouTube
 
-while True:
 
-    def download():
+def download():
+    while True:
+    
         link = input("What are you trying to download? URL: ")
         yt = YouTube(link)
 
+        print(f"\nDownloading: {yt.title} ... Wait for it ...")
+        
         yd = yt.streams.get_highest_resolution()
         yd.download("/Users/sandy/Downloads")
 
-        print("Downloading:", yt.title, "... Wait for it ...")
-        print("Done\n")
+        print("\nDone\n")
 
         i_finished = input("If you're done, just type \"done\". If not done, press any key and then ENTER ").lower()
         if i_finished == "done":
             quit()
-        else:
-            download()
-
-    download()
+download()
